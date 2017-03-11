@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "E:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\build\\intermediates\\res\\merged\\debug\\color\\vpi__light_theme.xml",
+        "source": "E:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\src\\main\\res\\color\\vpi__light_theme.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\build\\intermediates\\res\\merged\\debug\\color\\vpi__dark_theme.xml",
+        "source": "D:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\src\\main\\res\\color\\vpi__dark_theme.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\build\\intermediates\\res\\merged\\debug\\color\\vpi__light_theme.xml",
+        "source": "D:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\src\\main\\res\\color\\vpi__light_theme.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\build\\intermediates\\res\\merged\\debug\\color\\vpi__dark_theme.xml",
+        "source": "E:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\src\\main\\res\\color\\vpi__dark_theme.xml"
+    }
+]

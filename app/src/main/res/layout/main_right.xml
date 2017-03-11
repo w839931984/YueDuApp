@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wq.demo.view.MyRightLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/mainColor"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/right_fl"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/mainColor"
+        android:gravity="center">
+        <RadioButton
+            android:id="@+id/rb_native"
+            style="@style/RadioButtonStyle"
+            android:text="本地阅读"/>
+        <RadioButton
+            android:id="@+id/rb_online"
+            style="@style/RadioButtonStyle"
+            android:text="在线阅读"/>
+        <!--<RadioButton-->
+            <!--android:id="@+id/rb_cartoon"-->
+            <!--style="@style/RadioButtonStyle"-->
+            <!--android:text="漫画阅读"/>-->
+    </RadioGroup>
+
+</com.wq.demo.view.MyRightLinearLayout>

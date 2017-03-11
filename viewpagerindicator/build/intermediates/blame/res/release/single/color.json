@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "E:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\build\\intermediates\\res\\merged\\release\\color\\vpi__light_theme.xml",
+        "source": "E:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\src\\main\\res\\color\\vpi__light_theme.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\build\\intermediates\\res\\merged\\release\\color\\vpi__dark_theme.xml",
+        "source": "E:\\AndroidStudioProjects\\DemoApplication\\viewpagerindicator\\src\\main\\res\\color\\vpi__dark_theme.xml"
+    }
+]

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_cname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/readColor"
+        android:gravity="center"
+        android:textColor="#818181"
+        android:padding="2dp"
+        android:textSize="10sp"
+        android:maxLines="1"/>
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_cname"
+        android:background="@color/readColor"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/titleColorBlack"
+            android:textSize="18sp"/>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_chapter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/mainColor"
+            android:gravity="center"
+            android:text="章节列表"
+            android:textSize="22sp"/>
+
+        <ListView
+            android:id="@+id/lv_chapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_close"
+            android:layout_below="@id/tv_title"
+            android:background="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/mainColor"
+            android:text="收起"/>
+    </RelativeLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/btn_getChapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/selector_button_search"
+        android:text="重新获取"
+        android:textColor="@color/selector_button_search_text_color"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
