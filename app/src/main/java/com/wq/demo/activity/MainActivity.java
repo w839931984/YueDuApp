@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
 		initSearchView(menu);
 
-		return super.onCreateOptionsMenu(menu);
+		return true;
 	}
 
 	private void initSearchView(Menu menu) {
