@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.wq.demo.R;
 import com.wq.demo.drag.DragFrameLayout;
-import com.wq.demo.fragment.CartoonReadFragment;
+import com.wq.demo.fragment.HappyReadFragment;
 import com.wq.demo.fragment.MainLeftFragment;
 import com.wq.demo.fragment.NativeReadFragment;
 import com.wq.demo.fragment.OnlineReadFragment;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 	private final String FRAGMENT_CARTOON_READ = "fragment_cartoon_read";
 	private final String FRAGMENT_MAIN_LEFT = "fragment_main_left";
 	private OnlineReadFragment mOnlineReadFragment;
-	private CartoonReadFragment mCartoonReadFragment;
+	private HappyReadFragment mHappyReadFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -119,17 +119,17 @@ public class MainActivity extends AppCompatActivity {
 						}
 						transaction.show(mOnlineReadFragment);
 						break;
-//					case R.id.rb_cartoon:
-//						Log.i("WQ", "切换到漫画");
-//						mAppBar.setTitle("漫画");
-//						if (mCartoonReadFragment == null) {
-//							Log.i("WQ", "创建漫画页面");
-//							mCartoonReadFragment = new CartoonReadFragment();
-//							mFragments.add(mCartoonReadFragment);
-//							transaction.add(R.id.right_fl, mCartoonReadFragment, FRAGMENT_CARTOON_READ);
-//						}
-//						transaction.show(mCartoonReadFragment);
-//						break;
+					case R.id.rb_happy:
+						Log.i("WQ", "切换到开心一笑");
+						mAppBar.setTitle("开心一笑");
+						if (mHappyReadFragment == null) {
+							Log.i("WQ", "创建开心一笑页面");
+							mHappyReadFragment = new HappyReadFragment();
+							mFragments.add(mHappyReadFragment);
+							transaction.add(R.id.right_fl, mHappyReadFragment, FRAGMENT_CARTOON_READ);
+						}
+						transaction.show(mHappyReadFragment);
+						break;
 				}
 				transaction.commit();
 			}
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 	private void initData() {
 		mFragmentManager = getSupportFragmentManager();
 
-		mFragments = new ArrayList<Fragment>();
+		mFragments = new ArrayList<>();
 
 		//初始化mRadioGroup的默认选择
 		mRadioGroup.check(R.id.rb_native);

@@ -107,12 +107,9 @@ public class OnlineReadActivity extends AppCompatActivity {
 				mCurrentCid = chapterDataList.get(position).cid;
 
 				//设置字体加粗
-				TextView tv_1 = ((MyAdapter.ViewHolder) lv_chapter.getChildAt(mCurrentPosition).getTag()).tv_chapter;
-				tv_1.getPaint().setFakeBoldText(true);
-				tv_1.invalidate();
-				TextView tv_2 = ((MyAdapter.ViewHolder) lv_chapter.getChildAt(mOldPosition).getTag()).tv_chapter;
-				tv_2.getPaint().setFakeBoldText(false);
-				tv_2.invalidate();
+				TextView tv = (TextView) view.findViewById(R.id.tv_chapter);
+				tv.getPaint().setFakeBoldText(true);
+				tv.invalidate();
 
 				closeChapterList();
 				progressBar.setVisibility(View.VISIBLE);
@@ -219,7 +216,9 @@ public class OnlineReadActivity extends AppCompatActivity {
 
 						progressBar.setVisibility(View.INVISIBLE);
 						tv_cname.setText(chapterContent.cname);
-						tv_content.setText("　　" + chapterContent.txt.replaceAll("<br /><br />", "\n\r　　"));
+						String text = chapterContent.txt.replaceAll("<br /><br />", "\n\r　　");
+						text = text.replace("<br/><br/>", "\n\r　　");
+						tv_content.setText("　　" + text);
 					}
 				});
 	}
@@ -293,14 +292,16 @@ public class OnlineReadActivity extends AppCompatActivity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
+			View view;
 			ViewHolder holder;
 			if (convertView == null) {
-				convertView = View.inflate(OnlineReadActivity.this, R.layout.list_chaper_item, null);
+				view = View.inflate(OnlineReadActivity.this, R.layout.list_chaper_item, null);
 				holder = new ViewHolder();
-				holder.tv_chapter = (TextView) convertView.findViewById(R.id.tv_chapter);
-				convertView.setTag(holder);
+				holder.tv_chapter = (TextView) view.findViewById(R.id.tv_chapter);
+				view.setTag(holder);
 			} else {
-				holder = (ViewHolder) convertView.getTag();
+				view = convertView;
+				holder = (ViewHolder) view.getTag();
 			}
 			holder.tv_chapter.setText(chapterDataList.get(position).name);
 			if(mCurrentPosition == position){
@@ -310,7 +311,7 @@ public class OnlineReadActivity extends AppCompatActivity {
 			}
 			holder.tv_chapter.invalidate();
 
-			return convertView;
+			return view;
 		}
 
 		class ViewHolder {

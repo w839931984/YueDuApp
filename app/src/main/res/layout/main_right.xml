@@ -41,10 +41,10 @@
             android:id="@+id/rb_online"
             style="@style/RadioButtonStyle"
             android:text="在线阅读"/>
-        <!--<RadioButton-->
-            <!--android:id="@+id/rb_cartoon"-->
-            <!--style="@style/RadioButtonStyle"-->
-            <!--android:text="漫画阅读"/>-->
+        <RadioButton
+            android:id="@+id/rb_happy"
+            style="@style/RadioButtonStyle"
+            android:text="开心一笑"/>
     </RadioGroup>
 
 </com.wq.demo.view.MyRightLinearLayout>

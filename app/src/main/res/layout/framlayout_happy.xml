@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     android:background="@null">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_happy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="漫画阅读页面"/>
+        android:scrollbars="none"/>
 
 </RelativeLayout>
