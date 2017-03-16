@@ -1,5 +1,7 @@
 package com.wq.demo.global;
 
+import java.util.Random;
+
 /**
  * Created by WQ on 2016/10/12.
  */
@@ -66,5 +68,13 @@ public class Global {
 				+ "&showapi_sign=" + APP_SIGN
 				+ "&bookId=" + bookId
 				+ "&cid=" + cid;
+	}
+
+	public static String buildGetJokeDataUrl(int type, int page) {
+		return "http://route.showapi.com/341-" + type + "?"
+				+ "showapi_appid=" + APP_ID
+				+ "&showapi_sign=" + APP_SIGN
+				+ "&maxResult=" + 5
+				+ "&page=" + page;
 	}
 }

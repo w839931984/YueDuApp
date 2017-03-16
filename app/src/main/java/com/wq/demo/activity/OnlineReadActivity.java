@@ -56,7 +56,7 @@ public class OnlineReadActivity extends AppCompatActivity {
 	private ValueAnimator animatorUp;
 	private Button btn_close;
 	private RelativeLayout rl_chapter;
-	private TextView tv_cname;
+	private TextView tv_name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +129,7 @@ public class OnlineReadActivity extends AppCompatActivity {
 	private void initView() {
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		tv_content = (TextView) findViewById(R.id.tv_content);
-		tv_cname = (TextView) findViewById(R.id.tv_cname);
+		tv_name = (TextView) findViewById(R.id.tv_cname);
 		lv_chapter = (ListView) findViewById(R.id.lv_chapter);
 		btn_getChapter = (Button) findViewById(R.id.btn_getChapter);
 		rl_chapter = (RelativeLayout) findViewById(R.id.rl_chapter);
@@ -215,7 +215,7 @@ public class OnlineReadActivity extends AppCompatActivity {
 						}
 
 						progressBar.setVisibility(View.INVISIBLE);
-						tv_cname.setText(chapterContent.cname);
+						tv_name.setText(chapterContent.cname);
 						String text = chapterContent.txt.replaceAll("<br /><br />", "\n\r　　");
 						text = text.replace("<br/><br/>", "\n\r　　");
 						tv_content.setText("　　" + text);
