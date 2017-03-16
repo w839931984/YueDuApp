@@ -6,3 +6,10 @@
 .DS_Store
 /build
 /captures
+.idea/vcs.xml
+app/src/main/res/mipmap-hdpi/
+app/src/main/res/mipmap-mdpi/
+app/src/main/res/mipmap-xhdpi/
+app/src/main/res/mipmap-xxxhdpi/
+library/
+viewpagerindicator/build
