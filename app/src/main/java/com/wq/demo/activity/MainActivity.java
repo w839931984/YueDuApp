@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.viewutils.Annotation.ViewInject;
+import com.example.viewutils.ViewUtils;
 import com.wq.demo.R;
 import com.wq.demo.drag.DragFrameLayout;
 import com.wq.demo.fragment.HappyReadFragment;
@@ -31,26 +33,32 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-	private Toolbar mToolBar;
-	private DragFrameLayout mDragView;
-	private RadioGroup mRadioGroup;
-	private ActionBar mAppBar;
-	private NativeReadFragment mNativeReadFragment;
+    @ViewInject(R.id.toolbar)
+    private Toolbar mToolBar;
 
-	private ArrayList<Fragment> mFragments;
-	private FragmentManager mFragmentManager;
+    @ViewInject(R.id.drag)
+    private DragFrameLayout mDragView;
 
-	private final String FRAGMENT_NATIVE_READ = "fragment_native_read";
-	private final String FRAGMENT_ONLINE_READ = "fragment_online_read";
-	private final String FRAGMENT_CARTOON_READ = "fragment_cartoon_read";
-	private final String FRAGMENT_MAIN_LEFT = "fragment_main_left";
-	private OnlineReadFragment mOnlineReadFragment;
-	private HappyReadFragment mHappyReadFragment;
+    @ViewInject(R.id.rg)
+    private RadioGroup mRadioGroup;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+    private ActionBar mAppBar;
+    private NativeReadFragment mNativeReadFragment;
+
+    private ArrayList<Fragment> mFragments;
+    private FragmentManager mFragmentManager;
+
+    private final String FRAGMENT_NATIVE_READ = "fragment_native_read";
+    private final String FRAGMENT_ONLINE_READ = "fragment_online_read";
+    private final String FRAGMENT_CARTOON_READ = "fragment_cartoon_read";
+    private final String FRAGMENT_MAIN_LEFT = "fragment_main_left";
+    private OnlineReadFragment mOnlineReadFragment;
+    private HappyReadFragment mHappyReadFragment;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
 //		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
 //			View decorView = getWindow().getDecorView();
@@ -63,170 +71,172 @@ public class MainActivity extends AppCompatActivity {
 //			localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
 //		}
 
-		//初始化控件
-		initView();
+        ViewUtils.inject(this);
 
-		//初始化toolbar
-		initAppBar();
+        //初始化控件
+//        initView();//使用了注解去初始化View
 
-		setListener();
+        //初始化toolbar
+        initAppBar();
 
-		initData();
-	}
+        setListener();
 
-	private void initView() {
-		mToolBar = (Toolbar) findViewById(R.id.toolbar);
-		mDragView = (DragFrameLayout) findViewById(R.id.drag);
-		mRadioGroup = (RadioGroup) findViewById(R.id.rg);
-	}
+        initData();
+    }
 
-	private void initAppBar() {
-		mToolBar.setTitle("悦读");
-		mToolBar.setTitleTextColor(Color.WHITE);
-		mToolBar.setNavigationIcon(R.drawable.ic_action_storage);
+    private void initView() {
+        mToolBar = (Toolbar) findViewById(R.id.toolbar);
+        mDragView = (DragFrameLayout) findViewById(R.id.drag);
+        mRadioGroup = (RadioGroup) findViewById(R.id.rg);
+    }
 
-		setSupportActionBar(mToolBar);
+    private void initAppBar() {
+        mToolBar.setTitle("悦读");
+        mToolBar.setTitleTextColor(Color.WHITE);
+        mToolBar.setNavigationIcon(R.drawable.ic_action_storage);
 
-		mAppBar = getSupportActionBar();
-	}
+        setSupportActionBar(mToolBar);
 
-	private void setListener() {
-		mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				FragmentTransaction transaction = mFragmentManager.beginTransaction();
-				setFragmentVisible(transaction);
-				switch (checkedId){
-					case R.id.rb_native:
-						Log.i("WQ", "切换到本地");
-						mAppBar.setTitle("书架");
-						if (mNativeReadFragment == null) {
-							Log.i("WQ", "创建本地页面");
-							mNativeReadFragment = new NativeReadFragment();
-							mFragments.add(mNativeReadFragment);
-							transaction.add(R.id.right_fl, mNativeReadFragment, FRAGMENT_NATIVE_READ);
-						}
-						transaction.show(mNativeReadFragment);
-						break;
-					case R.id.rb_online:
-						Log.i("WQ", "切换到在线");
-						mAppBar.setTitle("在线阅读");
-						if (mOnlineReadFragment == null) {
-							Log.i("WQ", "创建在线页面");
-							mOnlineReadFragment = new OnlineReadFragment();
-							mFragments.add(mOnlineReadFragment);
-							transaction.add(R.id.right_fl, mOnlineReadFragment, FRAGMENT_ONLINE_READ);
-						}
-						transaction.show(mOnlineReadFragment);
-						break;
-					case R.id.rb_happy:
-						Log.i("WQ", "切换到开心一笑");
-						mAppBar.setTitle("开心一笑");
-						if (mHappyReadFragment == null) {
-							Log.i("WQ", "创建开心一笑页面");
-							mHappyReadFragment = new HappyReadFragment();
-							mFragments.add(mHappyReadFragment);
-							transaction.add(R.id.right_fl, mHappyReadFragment, FRAGMENT_CARTOON_READ);
-						}
-						transaction.show(mHappyReadFragment);
-						break;
-				}
-				transaction.commit();
-			}
-		});
-	}
+        mAppBar = getSupportActionBar();
+    }
 
-	private void initData() {
-		mFragmentManager = getSupportFragmentManager();
+    private void setListener() {
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                FragmentTransaction transaction = mFragmentManager.beginTransaction();
+                setFragmentVisible(transaction);
+                switch (checkedId) {
+                    case R.id.rb_native:
+                        Log.i("WQ", "切换到本地");
+                        mAppBar.setTitle("书架");
+                        if (mNativeReadFragment == null) {
+                            Log.i("WQ", "创建本地页面");
+                            mNativeReadFragment = new NativeReadFragment();
+                            mFragments.add(mNativeReadFragment);
+                            transaction.add(R.id.right_fl, mNativeReadFragment, FRAGMENT_NATIVE_READ);
+                        }
+                        transaction.show(mNativeReadFragment);
+                        break;
+                    case R.id.rb_online:
+                        Log.i("WQ", "切换到在线");
+                        mAppBar.setTitle("在线阅读");
+                        if (mOnlineReadFragment == null) {
+                            Log.i("WQ", "创建在线页面");
+                            mOnlineReadFragment = new OnlineReadFragment();
+                            mFragments.add(mOnlineReadFragment);
+                            transaction.add(R.id.right_fl, mOnlineReadFragment, FRAGMENT_ONLINE_READ);
+                        }
+                        transaction.show(mOnlineReadFragment);
+                        break;
+                    case R.id.rb_happy:
+                        Log.i("WQ", "切换到开心一笑");
+                        mAppBar.setTitle("开心一笑");
+                        if (mHappyReadFragment == null) {
+                            Log.i("WQ", "创建开心一笑页面");
+                            mHappyReadFragment = new HappyReadFragment();
+                            mFragments.add(mHappyReadFragment);
+                            transaction.add(R.id.right_fl, mHappyReadFragment, FRAGMENT_CARTOON_READ);
+                        }
+                        transaction.show(mHappyReadFragment);
+                        break;
+                }
+                transaction.commit();
+            }
+        });
+    }
 
-		mFragments = new ArrayList<>();
+    private void initData() {
+        mFragmentManager = getSupportFragmentManager();
 
-		//初始化mRadioGroup的默认选择
-		mRadioGroup.check(R.id.rb_native);
-		mAppBar.setTitle("书架");
+        mFragments = new ArrayList<>();
 
-		initMainLeft();
-	}
+        //初始化mRadioGroup的默认选择
+        mRadioGroup.check(R.id.rb_native);
+        mAppBar.setTitle("书架");
 
-	private void initMainLeft() {
-		FragmentTransaction transaction = mFragmentManager.beginTransaction();
-		transaction.replace(R.id.main_left_fragment, new MainLeftFragment(), FRAGMENT_MAIN_LEFT);
-		transaction.commit();
-	}
+        initMainLeft();
+    }
 
-	private void setFragmentVisible(FragmentTransaction transaction) {
-		for (Fragment fragment : mFragments) {
-			if (fragment != null){
-				transaction.hide(fragment);
-			}
-		}
-	}
+    private void initMainLeft() {
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        transaction.replace(R.id.main_left_fragment, new MainLeftFragment(), FRAGMENT_MAIN_LEFT);
+        transaction.commit();
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main_menu, menu);
+    private void setFragmentVisible(FragmentTransaction transaction) {
+        for (Fragment fragment : mFragments) {
+            if (fragment != null) {
+                transaction.hide(fragment);
+            }
+        }
+    }
 
-		initSearchView(menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
 
-		return true;
-	}
+        initSearchView(menu);
 
-	private void initSearchView(Menu menu) {
-		final MenuItem item = menu.findItem(R.id.search);
-		final SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(item);
-		ImageView searchButton = (ImageView)mSearchView.findViewById(R.id.search_button);
-		searchButton.setImageResource(R.drawable.ic_action_search);
-		mSearchView.setQueryHint("请输入书籍名称");
+        return true;
+    }
 
-		mSearchView.setOnSearchClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				mSearchView.setBackgroundColor(Color.WHITE);
-			}
-		});
+    private void initSearchView(Menu menu) {
+        final MenuItem item = menu.findItem(R.id.search);
+        final SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(item);
+        ImageView searchButton = (ImageView) mSearchView.findViewById(R.id.search_button);
+        searchButton.setImageResource(R.drawable.ic_action_search);
+        mSearchView.setQueryHint("请输入书籍名称");
 
-		mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
-			@Override
-			public boolean onClose() {
-				mSearchView.setBackgroundColor(Color.TRANSPARENT);
-				return false;
-			}
-		});
+        mSearchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSearchView.setBackgroundColor(Color.WHITE);
+            }
+        });
 
-		mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-			@Override
-			public boolean onQueryTextSubmit(String query) {
-				Toast.makeText(MainActivity.this, "开始搜索", Toast.LENGTH_SHORT).show();
-				mSearchView.onActionViewCollapsed();
-				mSearchView.setBackgroundColor(Color.TRANSPARENT);
-				return true;
-			}
+        mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                mSearchView.setBackgroundColor(Color.TRANSPARENT);
+                return false;
+            }
+        });
 
-			@Override
-			public boolean onQueryTextChange(String newText) {
-				return true;
-			}
-		});
-	}
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(MainActivity.this, "开始搜索", Toast.LENGTH_SHORT).show();
+                mSearchView.onActionViewCollapsed();
+                mSearchView.setBackgroundColor(Color.TRANSPARENT);
+                return true;
+            }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()){
-			case R.id.search:
-				break;
-			case R.id.setting:
-				startActivity(new Intent(this, SettingActivity.class));
-				break;
-			default:
-				mDragView.change();
-				break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+        });
+    }
 
-	@Override
-	public void onWindowFocusChanged(boolean hasFocus) {
-		super.onWindowFocusChanged(hasFocus);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                break;
+            case R.id.setting:
+                startActivity(new Intent(this, SettingActivity.class));
+                break;
+            default:
+                mDragView.change();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
 
 //		设置完全的沉浸式状态栏
 //		if (hasFocus && Build.VERSION.SDK_INT >= 19) {
@@ -239,16 +249,16 @@ public class MainActivity extends AppCompatActivity {
 //							| View.SYSTEM_UI_FLAG_FULLSCREEN
 //							| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 //		}
-	}
+    }
 
-	public DragFrameLayout getDragView() {
-		return mDragView;
-	}
+    public DragFrameLayout getDragView() {
+        return mDragView;
+    }
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
-		OkHttpUtils.getInstance().cancelAll();
-	}
+        OkHttpUtils.getInstance().cancelAll();
+    }
 }

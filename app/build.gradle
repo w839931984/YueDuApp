@@ -31,4 +31,5 @@ dependencies {
     compile project(':okhttputils')
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:cardview-v7:23.4.0'
+    compile project(path: ':viewutils')
 }
